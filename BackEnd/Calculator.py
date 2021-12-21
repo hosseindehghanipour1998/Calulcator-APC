@@ -33,15 +33,17 @@ class Calculator :
     
     def calculate(self):
         for character in self.expr:
+            print(f"Read Character: {character}")
             
             # If character == Operator
             if ( character in self.operatorsList):
                 # There was sth in operator stack from before
-                if ( len(self.operatorStack) > 0):
-                    if ( self.operatorPrecedences[character] > self.operatorPrecedences[self.operatorStack[-1]] ):
+                if ( len(self.operatorStack) > 0 ):
+
+                    if ( ( character == "^" and self.operatorStack[-1] == "^") or(self.operatorStack[-1] == '(') or (self.operatorPrecedences[character] > self.operatorPrecedences[self.operatorStack[-1]]) ):
                         self.operatorStack.append(character)
 
-                    elif (( (character == '+') or (character == '-') ) and ( (self.operatorStack[-1] == '*')  or  (self.operatorStack[-1] == '/') ) ):
+                    elif ((self.operatorPrecedences[character] <= self.operatorPrecedences[self.operatorStack[-1]]) ):
 
                         if(len(self.operandStack) > 0):
                             a = self.operandStack.pop()
