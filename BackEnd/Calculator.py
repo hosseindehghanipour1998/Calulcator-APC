@@ -68,6 +68,22 @@ class Calculator :
         return True if _float_regexp(string) else False
     
     def calculateFunction(self, functionName, operand):
+        '''
+        This function is called whenever we have passed a function that requires the help math.py library in Python.
+
+        Parameters
+        ----------
+        functionName : String
+            Name of the passed Function. Can be sin, cos, tan, ctg, ceil, floor, sinh, cosh, exp, sqrt, exp
+        operand : Integer
+            The Operand that the function should be apllied on.
+
+        Returns
+        -------
+        result : Integer, String
+            If the function name is entered correctly it will return an integer which is the calculated output.
+            Otherwise, if the name of the function is not in our function list or entered incorrecly, it returns a "Function Not Found" String as output.
+        '''
 
         switchCase = {
             "tan": math.tan(operand),
@@ -84,7 +100,7 @@ class Calculator :
             }
         
         
-        result =  switchCase.get(functionName, "Not Found")
+        result =  switchCase.get(functionName, "Function Not Found")
         return result
         
     
@@ -152,36 +168,49 @@ class Calculator :
        
         # End of Loop
         while (len(self.operatorStack) > 0):
-            operator = self.operatorStack.pop()
-            a = self.operandStack.pop()
-            b = self.operandStack.pop()
-            result = self.operandAction(operator, b, a)
-            self.operandStack.append(result)
-            
+            try:
+                operator = self.operatorStack.pop()
+                a = self.operandStack.pop()
+                b = self.operandStack.pop()
+                result = self.operandAction(operator, b, a)
+                self.operandStack.append(result)
+            except:
+                 raise Exception("Operators Are More Than Operands. Fix it :D")
+                 
             ###### Used for debugging (Start)######
             #print("Operation: " + str(operator) + " Operands: " + str(a) + " " + str(b))
             ###### Used for debugging (End)######
-
+        
         return self.operandStack.pop()
 
 
     def calculate(self):
+        '''
+        Returns
+        -------
+        result : Integer, String
+            If the name of the entered function is incorrect, it returns a "Function Not Found" String as expalined in the description 
+            of function "self.calculateFunction()". Otherwise, it calculates the output amount and returns the output result.
+
+        '''
         result = None
-        
-        if(self.isCallingFunction):          
-            functionName =  str(self.expr[1]).lower()         
-            operand =  int(self.expr[2])
-            result = self.calculateFunction(functionName, operand)
+        try:
+            if(self.isCallingFunction):          
+                functionName =  str(self.expr[1]).lower()         
+                operand =  int(self.expr[2])
+                result = self.calculateFunction(functionName, operand)
+                
+                ###### Used for debugging (Start)######
+                #print(f"Expr: {self.expr}")
+                #print(f"Function Name: ({str(self.expr[1]).lower()})")
+                #print(f"Function Name: {functionName} | Operand: {operand}")
+                ###### Used for debugging (End)######
+                
+            else:
+                result = self.calculateOperator()
+        except:
+            raise Exception("Backend Cannot Support the Entered Exporession. Fix it :D")
             
-            ###### Used for debugging (Start)######
-            print(f"Expr: {self.expr}")
-            print(f"Function Name: ({str(self.expr[1]).lower()})")
-            print(f"Function Name: {functionName} | Operand: {operand}")
-            ###### Used for debugging (End)######
-            
-        else:
-            result = self.calculateOperator()
-        
         return result
             
             

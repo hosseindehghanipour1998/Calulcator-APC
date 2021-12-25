@@ -19,8 +19,8 @@ Functions:
 '''
 
 # How to Pass it?
-expr = "function sin 90"
-expr = "31 / 1 + 2 * 2 / 5 - 9 / 4 * 2.5"
+expr = "function ctg 90"
+#expr = "31 / 1 + 2 * 2 / 5 - 9 / 4 * 2.5"
 
 cal =  Cal.Calculator(expr, -1)
 result = cal.calculate()
