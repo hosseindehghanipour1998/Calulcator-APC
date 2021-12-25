@@ -4,6 +4,24 @@ import math
 class Calculator :
 
     def __init__(self, expression , inputX):
+        '''
+        
+
+        Parameters
+        ----------
+        expression : String
+            TRhe Entered Expression from the front.
+        inputX : Integer
+            The amount that will be replaced by the variable x.
+
+        Returns
+        -------
+        None. An instance object of Calculator Class.
+
+        '''
+        
+        
+        
         self.length = len(expression)
         self.operatorStack = []
         self.operandStack = []
@@ -99,9 +117,10 @@ class Calculator :
             "sinh":math.sinh(operand)
             }
         
-        
         result =  switchCase.get(functionName, "Function Not Found")
         return result
+    
+    
         
     
     def calculateOperator(self):
@@ -185,6 +204,7 @@ class Calculator :
 
 
     def calculate(self):
+        
         '''
         Returns
         -------
