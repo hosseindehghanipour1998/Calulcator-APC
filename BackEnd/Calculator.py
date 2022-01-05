@@ -217,7 +217,7 @@ class Calculator :
         try:
             if(self.isCallingFunction):          
                 functionName =  str(self.expr[1]).lower()         
-                operand =  int(self.expr[2])
+                operand =  int(float(self.expr[2]))
                 result = self.calculateFunction(functionName, operand)
                 
                 ###### Used for debugging (Start)######

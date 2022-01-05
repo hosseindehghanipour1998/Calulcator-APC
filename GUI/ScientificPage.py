@@ -1,7 +1,7 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 from Button import *
-from Calculator import Calculator 
+from BackEnd.Calculator import Calculator
 from msvcrt import kbhit
 from Button import myButton
 from Utility import *
@@ -15,9 +15,8 @@ class MyScientificPage:
         # Monitor
         monitor = tk.Label(root, font=("Andale Mono", 15,"italic"), relief=tk.SUNKEN)
         monitor.grid(rowspan=1, columnspan = 4, column=0, row=0)
-        
-        
-        # Keyboard
+        trigonometryOptions = ['Sin', 'Cos', 'Tan', 'Cot', 'Sinh', 'Cosh']
+
         btn_mode    = myButton(root, btnRow = 1, btnColumn = 0, btnText = "%", bgColor = "#84f5e8", btnAction = lambda:myUtility.printOnMonitor("%", monitor, space=True) ) # %
         btn_CE      = myButton(root, btnRow = 1, btnColumn = 1, btnText = "CE", bgColor = "#84f5e8", btnAction = lambda:myUtility.printOnMonitor("", monitor, clear=True) ) # CE
         btn_C       = myButton(root, btnRow = 1, btnColumn = 2, btnText = "C", bgColor = "#84f5e8", btnAction = lambda:myUtility.printOnMonitor("", monitor)) # C
@@ -42,3 +41,11 @@ class MyScientificPage:
         btn_0       = myButton(root, btnRow = 5, btnColumn = 1, btnText = "0", bgColor = "#fafafa", btnAction = lambda:myUtility.printOnMonitor("0", monitor) ) # 0
         btn_dot     = myButton(root, btnRow = 5, btnColumn = 2, btnText = ".", bgColor = "#84f5e8", btnAction = lambda:myUtility.printOnMonitor(".", monitor) ) # .
         btn_equ     = myButton(root, btnRow = 5, btnColumn = 3, btnText = "=", bgColor = "#00fadd", btnAction = lambda:myUtility.callCalculateFunction(monitor) ) # =
+
+        btn_sin     = myButton(root, btnRow = 5, btnColumn = 5, btnText = "Sin", bgColor = "#84f5e8", btnAction = lambda:myUtility.printOnMonitor("Sin", monitor, isFunction=True) ) # sin
+        btn_cos     = myButton(root, btnRow = 4, btnColumn = 5, btnText = "Cos", bgColor = "#84f5e8", btnAction = lambda:myUtility.printOnMonitor("Cos", monitor, isFunction=True)  )# cos
+        btn_cot     = myButton(root, btnRow = 3, btnColumn = 5, btnText = "Cot", bgColor = "#84f5e8", btnAction = lambda:myUtility.printOnMonitor("Cot", monitor, isFunction=True) ) # cot
+        btn_tan     = myButton(root, btnRow = 2, btnColumn = 5, btnText = "Tan", bgColor = "#84f5e8", btnAction = lambda:myUtility.printOnMonitor("Tan", monitor, isFunction=True) ) # tan
+
+        btn_p_open     = myButton(root, btnRow = 5, btnColumn = 6, btnText = "(", bgColor = "#84f5e8", btnAction = lambda:myUtility.printOnMonitor("(", monitor) ) # (
+        btn_p_close     = myButton(root, btnRow = 4, btnColumn = 6, btnText = ")", bgColor = "#84f5e8", btnAction = lambda:myUtility.printOnMonitor(")", monitor) ) # )

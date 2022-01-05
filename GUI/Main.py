@@ -1,7 +1,8 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 from Button import *
-from Calculator import Calculator 
+from BackEnd\
+    .Calculator import Calculator
 from msvcrt import kbhit
 from Button import myButton
 from ScientificPage import MyScientificPage
