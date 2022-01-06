@@ -102,22 +102,21 @@ class Calculator :
             If the function name is entered correctly it will return an integer which is the calculated output.
             Otherwise, if the name of the function is not in our function list or entered incorrecly, it returns a "Function Not Found" String as output.
         '''
-
+        operand = math.radians(operand)
         switchCase = {
-            "tan": math.tan(operand),
-            "ctg": 1/math.tan(operand),
-            "sin": math.sin(operand),
-            "cos": math.cos(operand),
-            "ceil": math.ceil(operand),
-            "floor": math.floor(operand),
-            "sqrt": math.sqrt(operand),
-            "log": math.log(operand),
-            "exp": math.exp(operand),
-            "cosh":math.cosh(operand),
-            "sinh":math.sinh(operand)
+            "tan": "math.tan(operand)",
+            "ctg": "1/math.tan(operand)",
+            "sin": "math.sin(operand)",
+            "cos": "math.cos(operand)",
+            "ceil": "math.ceil(operand)",
+            "floor": "math.floor(operand)",
+            "sqrt": "math.sqrt(operand)",
+            "log": "math.log(operand)",
+            "exp": "math.exp(operand)",
+            "cosh": "math.cosh(operand)",
+            "sinh": "math.sinh(operand)"
             }
-        
-        result =  switchCase.get(functionName, "Function Not Found")
+        result =  eval(switchCase.get(functionName, "Function Not Found"))
         return result
     
     
@@ -194,7 +193,7 @@ class Calculator :
                 result = self.operandAction(operator, b, a)
                 self.operandStack.append(result)
             except:
-                 raise Exception("Operators Are More Than Operands. Fix it :D")
+                 raise Exception("Operators Are More Than Operands. Fix it :D (1)")
                  
             ###### Used for debugging (Start)######
             #print("Operation: " + str(operator) + " Operands: " + str(a) + " " + str(b))
@@ -217,19 +216,20 @@ class Calculator :
         try:
             if(self.isCallingFunction):          
                 functionName =  str(self.expr[1]).lower()         
-                operand =  int(float(self.expr[2]))
+                operand =  float(self.expr[2])
                 result = self.calculateFunction(functionName, operand)
                 
                 ###### Used for debugging (Start)######
-                #print(f"Expr: {self.expr}")
-                #print(f"Function Name: ({str(self.expr[1]).lower()})")
-                #print(f"Function Name: {functionName} | Operand: {operand}")
+                print(f"Expr: {self.expr}")
+                print(f"Function Name: ({str(self.expr[1]).lower()})")
+                print(f"Function Name: {functionName} | Operand: {operand}")
+                print(f"Results: {result}")
                 ###### Used for debugging (End)######
                 
             else:
                 result = self.calculateOperator()
         except:
-            raise Exception("Backend Cannot Support the Entered Exporession. Fix it :D")
+            raise Exception("Backend Cannot Support the Entered Exporession. Fix it :D (2)")
             
         return result
             

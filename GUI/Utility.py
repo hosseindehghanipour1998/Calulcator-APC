@@ -53,26 +53,25 @@ class myUtility:
         return standardized
 
     @staticmethod
-    def callCalculateFunction(monitorPointer, isFunction = True):
+    def callCalculateFunction(monitorPointer):
         expression = monitorPointer.cget("text")
-        test = list(expression.split())
+        checkFunction = list(expression.split())
+        operationList = ["Sin", "Cos", "Tan", "Ctg", "Ceil", "Floor", "Sqrt", "Log", "Exp", "Sinh", "Cosh"]
+
         print(expression)
-        print(test)
-        if isFunction == False and myUtility.Standardization(expression):
+
+        if (checkFunction[0] not in operationList) and myUtility.Standardization(expression):
             calculator = Calculator(expression, -1)
             result = calculator.calculate()
             monitorPointer.configure(text=result)
 
-        elif isFunction == True:
-            checkFunction = list(expression.split())
-            if checkFunction[0] == "Sin" or checkFunction[0] == "Cos" or checkFunction[0] == "Cot" or checkFunction[0] == "Tan":
-                newExp = expression[expression.find("(") + 2:expression.find(")") - 1]
-                calculator = Calculator(newExp, -1)
-                result = calculator.calculate() # typeIsfloat
-                print(result)
-                functionExp = "Function" + " " + str(checkFunction[0]).lower() + " " + str(result)
-                print( "Function Passing expression: "+ functionExp)
-                functionCalculator = Calculator(functionExp, -1)
-                finalResult = functionCalculator.calculate()
-                monitorPointer.configure(text=finalResult)
+        elif checkFunction[0] in operationList:
+            newExp = " ".join(checkFunction[2:-1])
+            calculator = Calculator(newExp, -1)
+            result = calculator.calculate() # typeIsfloat
+            functionExp = "Function" + " " + str(checkFunction[0]).lower() + " " + str(result)
+            print( "Function Passing Expression: "+ functionExp)
+            functionCalculator = Calculator(functionExp, -1)
+            finalResult = functionCalculator.calculate()
+            monitorPointer.configure(text=finalResult)
             

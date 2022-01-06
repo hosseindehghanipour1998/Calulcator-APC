@@ -44,8 +44,8 @@ class MyScientificPage:
 
         btn_sin     = myButton(root, btnRow = 5, btnColumn = 5, btnText = "Sin", bgColor = "#84f5e8", btnAction = lambda:myUtility.printOnMonitor("Sin", monitor, isFunction=True) ) # sin
         btn_cos     = myButton(root, btnRow = 4, btnColumn = 5, btnText = "Cos", bgColor = "#84f5e8", btnAction = lambda:myUtility.printOnMonitor("Cos", monitor, isFunction=True)  )# cos
-        btn_cot     = myButton(root, btnRow = 3, btnColumn = 5, btnText = "Cot", bgColor = "#84f5e8", btnAction = lambda:myUtility.printOnMonitor("Cot", monitor, isFunction=True) ) # cot
+        btn_cot     = myButton(root, btnRow = 3, btnColumn = 5, btnText = "Cot", bgColor = "#84f5e8", btnAction = lambda:myUtility.printOnMonitor("Ctg", monitor, isFunction=True) ) # cot
         btn_tan     = myButton(root, btnRow = 2, btnColumn = 5, btnText = "Tan", bgColor = "#84f5e8", btnAction = lambda:myUtility.printOnMonitor("Tan", monitor, isFunction=True) ) # tan
 
-        btn_p_open     = myButton(root, btnRow = 5, btnColumn = 6, btnText = "(", bgColor = "#84f5e8", btnAction = lambda:myUtility.printOnMonitor("(", monitor) ) # (
-        btn_p_close     = myButton(root, btnRow = 4, btnColumn = 6, btnText = ")", bgColor = "#84f5e8", btnAction = lambda:myUtility.printOnMonitor(")", monitor) ) # )
+        btn_p_open     = myButton(root, btnRow = 5, btnColumn = 6, btnText = "(", bgColor = "#84f5e8", btnAction = lambda:myUtility.printOnMonitor("(", monitor, space=True) ) # (
+        btn_p_close     = myButton(root, btnRow = 4, btnColumn = 6, btnText = ")", bgColor = "#84f5e8", btnAction = lambda:myUtility.printOnMonitor(")", monitor, space=True) ) # )
