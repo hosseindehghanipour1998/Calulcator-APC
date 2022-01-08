@@ -19,7 +19,7 @@ class Calculator :
         None. An instance object of Calculator Class.
 
         '''
-        
+
         
         
         self.length = len(expression)
@@ -27,12 +27,29 @@ class Calculator :
         self.operandStack = []
         self.expr = list(expression.split())
         self.operatorsList = {'+' , '-' , '/' , '*' , '^'}
-        self.operatorPrecedences = { "+" : 1 , "-": 1 , "/" : 3 , "*" : 3 , "^" : 4 }
+        self.operatorPrecedences = {
+                                    "+" : 1 ,
+                                    "-": 1 ,
+                                    "/" : 3 ,
+                                    "*" : 3 ,
+                                    "^" : 4,
+                                    "sin": 5,
+                                    "cos":5,
+                                    "tan": 5,
+                                    "ctg": 5,
+                                    "ceil": 5,
+                                    "floor": 5,
+                                    "sqrt": 5,
+                                    "log": 5,
+                                    "exp": 5,
+                                    "cosh": 5,
+                                    "sinh": 5
+                                    }
+        self.functionsList = {"sin",   "cos", "tan",  "ctg", "ceil", "floor", "sqrt", "log", "exp", "cosh", "sinh"}
         self.x = inputX
-        self.isCallingFunction = (True if ( str(self.expr[0]).upper() == "FUNCTION") else False)
         
         ###### Used for debugging (Start)######
-        print(f"Expression : {self.expr} \n Len : {len(self.expr)} \n input : { self.x} \n Function? {self.isCallingFunction}\n ")
+        print(f"Expression : {self.expr} \n Len : {len(self.expr)} \n input : { self.x} \n ")
         ###### Used for debugging (End)######
 
     def operandAction(self,operator, input1 , input2):
@@ -116,7 +133,9 @@ class Calculator :
             "cosh": "math.cosh(operand)",
             "sinh": "math.sinh(operand)"
             }
+        
         result =  eval(switchCase.get(functionName, "Function Not Found"))
+        print(f"{functionName}({operand} R) = {result}")
         return result
     
     
@@ -134,34 +153,41 @@ class Calculator :
         '''
         for character in self.expr:
             ###### Used for debugging (Start)######
-            #print(f"Read Character: {character}")
+            print(f"Read Character: {character}")
+            #print(f"operator Stack: {self.operatorStack}")
+            #print(f"Operand Stack: {self.operandStack}")
             ###### Used for debugging (End) ######
             
             # If character == Operator
-            if ( character in self.operatorsList):
+            if ( character in self.operatorsList or character in self.functionsList):
                 # There was sth in operator stack from before
                 if ( len(self.operatorStack) > 0 ):
                     
                     # Power and Open Paranthesis should be considered seperately because they affect the precedence of the operation.
                     if ( ( character == "^" and self.operatorStack[-1] == "^") or(self.operatorStack[-1] == '(') or (self.operatorPrecedences[character] > self.operatorPrecedences[self.operatorStack[-1]]) ):
                         self.operatorStack.append(character)
+
                     
                     # If the precedence of the current operator is higher than the precedence of the next operator, we should calculate the previous one before pushing the new operator
                     elif ((self.operatorPrecedences[character] <= self.operatorPrecedences[self.operatorStack[-1]]) ):
-
+                        
                         if(len(self.operandStack) > 0):
-                            # Calculate the previous operator inside the stack
-                            a = self.operandStack.pop()
-                            b = self.operandStack.pop()
-                            result = self.operandAction(self.operatorStack.pop(), b , a)
-                            self.operandStack.append(result)
+                            operator = self.operatorStack.pop()
+                            if(operator in self.functionsList):
+                                self.handleFunctionCharacter(operator)
+
+                            else:
+                                # Calculate the previous operator inside the stack
+                                self.handleOperatorCharacter(operator)
                             
                             # Also push the current operator inside the stack
                             self.operatorStack.append(character)
                     else:
                         self.operatorStack.append(character)
+
                 else :
                     self.operatorStack.append(character)
+
             
             elif ( character == '('):
                 self.operatorStack.append(character)
@@ -169,12 +195,20 @@ class Calculator :
             elif(character == ')'):
                 stackTop = self.operatorStack.pop()
                 while ( stackTop != '('):
-                    a = self.operandStack.pop()
-                    b = self.operandStack.pop()
-                    result = self.operandAction(stackTop, b, a)
-                    self.operandStack.append(result)
+                    
+                    if(stackTop in self.functionsList):
+                        self.handleFunctionCharacter(stackTop)
+                        stackTop = self.operatorStack.pop()
+                        
+                    else:
+                        self.handleOperatorCharacter(stackTop)
+                        stackTop = self.operatorStack.pop()
+                        
+                stackTop = self.operatorStack[-1]
+                if(stackTop in self.functionsList):
                     stackTop = self.operatorStack.pop()
-            
+                    self.handleFunctionCharacter(stackTop)
+
             # If Character == Varibale X 
             elif ( character.isalpha() == True ):
                 self.operandStack.append(self.x)
@@ -188,10 +222,12 @@ class Calculator :
         while (len(self.operatorStack) > 0):
             try:
                 operator = self.operatorStack.pop()
-                a = self.operandStack.pop()
-                b = self.operandStack.pop()
-                result = self.operandAction(operator, b, a)
-                self.operandStack.append(result)
+                if(operator in self.functionsList):
+                    self.handleFunctionCharacter(operator)
+
+                else:
+                    self.handleOperatorCharacter(operator)
+
             except:
                  raise Exception("Operators Are More Than Operands. Fix it :D (1)")
                  
@@ -200,7 +236,21 @@ class Calculator :
             ###### Used for debugging (End)######
         
         return self.operandStack.pop()
-
+    
+    def handleFunctionCharacter(self, operator):
+        functionName = operator.lower()
+        argument = self.operandStack.pop()
+        result = self.calculateFunction(functionName, argument)
+        self.operandStack.append(result)
+        
+    
+    def handleOperatorCharacter(self, operator):
+        
+        a = self.operandStack.pop()
+        b = self.operandStack.pop()
+        result = self.operandAction(operator, b, a)
+        self.operandStack.append(result)
+        
 
     def calculate(self):
         
@@ -214,20 +264,7 @@ class Calculator :
         '''
         result = None
         try:
-            if(self.isCallingFunction):          
-                functionName =  str(self.expr[1]).lower()         
-                operand =  float(self.expr[2])
-                result = self.calculateFunction(functionName, operand)
-                
-                ###### Used for debugging (Start)######
-                print(f"Expr: {self.expr}")
-                print(f"Function Name: ({str(self.expr[1]).lower()})")
-                print(f"Function Name: {functionName} | Operand: {operand}")
-                print(f"Results: {result}")
-                ###### Used for debugging (End)######
-                
-            else:
-                result = self.calculateOperator()
+            result = self.calculateOperator()
         except:
             raise Exception("Backend Cannot Support the Entered Exporession. Fix it :D (2)")
             
