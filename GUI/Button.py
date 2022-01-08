@@ -14,7 +14,7 @@ class myButton:
         myButton = tk.Button(father, text=btnText, font = btnFont, bg=bgColor, width = DEFAULT_WIDTH, height = DEFAULT_HIGHT, command=btnAction)
         myButton.grid(row = btnRow, column=btnColumn, padx= 0, pady= 0)
         myButton.bind("<Enter>", lambda x: myButton.config(bg="#4f63f7"))
-        myButton.bind("<Leave>", lambda x: myButton.config(bg="#c7cceb"))
+        myButton.bind("<Leave>", lambda x: myButton.config(bg=bgColor))
 
 
 

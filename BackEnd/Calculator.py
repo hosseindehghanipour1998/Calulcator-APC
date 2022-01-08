@@ -25,7 +25,7 @@ class Calculator :
         self.length = len(expression)
         self.operatorStack = []
         self.operandStack = []
-        self.expr = list(expression.split())
+        self.expr = list((expression).lower().split())
         self.operatorsList = {'+' , '-' , '/' , '*' , '^'}
         self.operatorPrecedences = {
                                     "+" : 1 ,
@@ -203,7 +203,9 @@ class Calculator :
                     else:
                         self.handleOperatorCharacter(stackTop)
                         stackTop = self.operatorStack.pop()
-                        
+
+                print(self.operatorStack)
+
                 stackTop = self.operatorStack[-1]
                 if(stackTop in self.functionsList):
                     stackTop = self.operatorStack.pop()
@@ -267,6 +269,7 @@ class Calculator :
             result = self.calculateOperator()
         except:
             raise Exception("Backend Cannot Support the Entered Exporession. Fix it :D (2)")
+            #return None
             
         return result
             

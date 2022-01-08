@@ -55,23 +55,12 @@ class myUtility:
     @staticmethod
     def callCalculateFunction(monitorPointer):
         expression = monitorPointer.cget("text")
-        checkFunction = list(expression.split())
-        operationList = ["Sin", "Cos", "Tan", "Ctg", "Ceil", "Floor", "Sqrt", "Log", "Exp", "Sinh", "Cosh"]
-
-        print(expression)
-
-        if (checkFunction[0] not in operationList) and myUtility.Standardization(expression):
+        try:
             calculator = Calculator(expression, -1)
             result = calculator.calculate()
-            monitorPointer.configure(text=result)
+            scientific_notation = "{:e}".format(result)
+            monitorPointer.configure(text=scientific_notation)
+        except:
+            tk.messagebox.showinfo(title="Error", message="Wrong Input")
+            monitorPointer.configure(text='')
 
-        elif checkFunction[0] in operationList:
-            newExp = " ".join(checkFunction[2:-1])
-            calculator = Calculator(newExp, -1)
-            result = calculator.calculate() # typeIsfloat
-            functionExp = "Function" + " " + str(checkFunction[0]).lower() + " " + str(result)
-            print( "Function Passing Expression: "+ functionExp)
-            functionCalculator = Calculator(functionExp, -1)
-            finalResult = functionCalculator.calculate()
-            monitorPointer.configure(text=finalResult)
-            

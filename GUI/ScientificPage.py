@@ -13,8 +13,9 @@ class MyScientificPage:
     def generatePage(self, root):
         
         # Monitor
-        monitor = tk.Label(root, font=("Andale Mono", 15,"italic"), relief=tk.SUNKEN)
-        monitor.grid(rowspan=1, columnspan = 4, column=0, row=0)
+        monitor = tk.Label(root, font=("Andale Mono", 15,"italic"), relief=tk.SUNKEN, width=30)
+        monitor.grid(rowspan=1, columnspan = 5, column=0, row=0)
+
         trigonometryOptions = ['Sin', 'Cos', 'Tan', 'Cot', 'Sinh', 'Cosh']
 
         btn_mode    = myButton(root, btnRow = 1, btnColumn = 0, btnText = "%", bgColor = "#84f5e8", btnAction = lambda:myUtility.printOnMonitor("%", monitor, space=True) ) # %
