@@ -14,8 +14,8 @@ root.resizable(0, 0)
 root.title("VUB Rostam Scientific Calculator")
 root.iconphoto(False, tk.PhotoImage(file='vub.png'))
 
-canvas = tk.Canvas(root, width=550, height=245, bg='#c2d1cf')
-canvas.grid(columnspan = 7, rowspan=6)
+canvas = tk.Canvas(root, width=645, height=245, bg='#c2d1cf')
+canvas.grid(columnspan = 8, rowspan=6)
 
 scientificPage = MyScientificPage()
 scientificPage.generatePage(root)

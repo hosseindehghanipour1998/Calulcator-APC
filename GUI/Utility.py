@@ -31,26 +31,10 @@ class myUtility:
 
         return isFunctionGlobal
 
-    @staticmethod
-    def Standardization(expression):
-        standardized = True
-        try:
-            # Checking First and Last Arguments
-            if expression[len(expression) - 1] == '.':
-                int(expression[0]) and int(expression[len(expression) - 2])
-            else:
-                int(expression[0]) and int(expression[len(expression) - 1])
+    #@staticmethod
+    #def minusFunction(monitorPointer):
 
-            for value in expression:
-                if (value != ' ') \
-                        and (value != '.') \
-                        and (value.isdigit() == False) \
-                        and (expression[expression.index(value) + 2] != '.'):
-                    int(expression[expression.index(value) + 2])
-        except:
-            tk.messagebox.showinfo(title="Error", message="Wrong Input")
-            standardized = False
-        return standardized
+
 
     @staticmethod
     def callCalculateFunction(monitorPointer):
