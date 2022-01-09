@@ -110,7 +110,6 @@ class Calculator:
             Otherwise, if the name of the function is not in our function list or entered incorrecly, it returns a "Function Not Found" String as output.
         '''
         operandInRadian = math.radians(operand)
-
         switchCase = {
             "tan": "math.tan(operandInRadian)",
             "ctg": "1/math.tan(operandInRadian)",
@@ -123,13 +122,7 @@ class Calculator:
             "exp": "math.exp(operand)",
             "cosh": "math.cosh(operandInRadian)",
             "sinh": "math.sinh(operandInRadian)"}
-
         result = eval(switchCase.get(functionName, "Function Not Found"))
-
-
-        
-        result =  eval(switchCase.get(functionName, "Function Not Found"))
-
         print(f"{functionName}({operandInRadian} R) = {result}")
         print(f"{functionName}({operand}) = {result}")
         return result
