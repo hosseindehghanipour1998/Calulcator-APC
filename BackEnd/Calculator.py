@@ -45,7 +45,7 @@ class Calculator:
         self.x = inputX
 
         ###### Used for debugging (Start)######
-        print(f"Expression : {self.expr} \n Len : {len(self.expr)} \n input : {self.x} \n ")
+        #print(f"Expression : {self.expr} \n Len : {len(self.expr)} \n input : {self.x} \n ")
         ###### Used for debugging (End)######
 
     def operandAction(self, operator, input1, input2):
@@ -123,8 +123,8 @@ class Calculator:
             "cosh": "math.cosh(operandInRadian)",
             "sinh": "math.sinh(operandInRadian)"}
         result = eval(switchCase.get(functionName, "Function Not Found"))
-        print(f"{functionName}({operandInRadian} R) = {result}")
-        print(f"{functionName}({operand}) = {result}")
+        #print(f"{functionName}({operandInRadian} R) = {result}")
+        #print(f"{functionName}({operand}) = {result}")
         return result
 
     def calculateOperator(self):
@@ -137,9 +137,9 @@ class Calculator:
         '''
         for character in self.expr:
             ###### Used for debugging (Start)######
-            print(f"Read Character: {character}")
-            # print(f"operator Stack: {self.operatorStack}")
-            # print(f"Operand Stack: {self.operandStack}")
+            #print(f"Read Character: {character}")
+            #print(f"operator Stack: {self.operatorStack}")
+            #print(f"Operand Stack: {self.operandStack}")
             ###### Used for debugging (End) ######
 
             # If character == Operator
@@ -189,9 +189,9 @@ class Calculator:
                         self.handleOperatorCharacter(stackTop)
                         stackTop = self.operatorStack.pop()
 
-                print(self.operatorStack)
 
-                stackTop = self.operatorStack[-1]
+                if(len(self.operatorStack) > 0):
+                    stackTop = self.operatorStack[-1]
                 if (stackTop in self.functionsList):
                     stackTop = self.operatorStack.pop()
                     self.handleFunctionCharacter(stackTop)
@@ -251,6 +251,5 @@ class Calculator:
             result = self.calculateOperator()
         except:
             raise Exception("Backend Cannot Support the Entered Exporession. Fix it :D (2)")
-            # return None
 
         return result

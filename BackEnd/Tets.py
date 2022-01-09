@@ -19,23 +19,26 @@ Functions:
 '''
 
 
-expr = "32 / 3.2 + 2 * 2 / 5 - 9 / 4 * 2.5"
-expr = "ceil ( 2.3 )"
-cal =  Cal.Calculator(expr, -1)
-result = cal.calculate()
 
 
 
-
-
-
-#expr = "142 / 6 / 7 / 2 + 1"
-
-
-print(f"My Output: {result}")
-square_number = eval("32/3.2+2*2/5-9/4*2.5")
-print(f"Eval Output: {square_number}")
-print(square_number == result)
+testCases = [
+            "2 * 3 ",
+            " 2 * 3 + 5",
+            "40 / 4 / 5 / 2 * 2 + 1",
+            "3.2 + 6.8",
+            "( 2 * 3 )",
+            #"ceil ( 2.3 )",
+            #"cos ( sin ( 2 * 3 ) + 9 / 9 )",
+    ]
+print("======== RUNNING TEST CASES ========")
+for expr in testCases:
+    cal =  Cal.Calculator(expr, -1)
+    result = cal.calculate()
+    expr = ''.join([x for x in  list(expr) if x != " "])
+    square_number = eval(expr)
+    print(f"EXPRESSION: {expr} => {square_number == result}")
+    
 
 
 
