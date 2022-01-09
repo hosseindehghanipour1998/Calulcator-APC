@@ -122,10 +122,14 @@ class Calculator:
             "log": "math.log(operand)",
             "exp": "math.exp(operand)",
             "cosh": "math.cosh(operandInRadian)",
-            "sinh": "math.sinh(operandInRadian)"
-        }
+            "sinh": "math.sinh(operandInRadian)"}
 
         result = eval(switchCase.get(functionName, "Function Not Found"))
+
+
+        
+        result =  eval(switchCase.get(functionName, "Function Not Found"))
+
         print(f"{functionName}({operandInRadian} R) = {result}")
         print(f"{functionName}({operand}) = {result}")
         return result

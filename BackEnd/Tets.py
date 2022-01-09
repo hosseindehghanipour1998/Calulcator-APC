@@ -20,7 +20,7 @@ Functions:
 
 
 expr = "32 / 3.2 + 2 * 2 / 5 - 9 / 4 * 2.5"
-
+expr = "ceil ( 2.3 )"
 cal =  Cal.Calculator(expr, -1)
 result = cal.calculate()
 
@@ -31,10 +31,10 @@ result = cal.calculate()
 
 #expr = "142 / 6 / 7 / 2 + 1"
 
-print(result)
 
+print(f"My Output: {result}")
 square_number = eval("32/3.2+2*2/5-9/4*2.5")
-print(square_number)
+print(f"Eval Output: {square_number}")
 print(square_number == result)
 
 
