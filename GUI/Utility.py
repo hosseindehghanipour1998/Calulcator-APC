@@ -58,8 +58,11 @@ class myUtility:
         try:
             calculator = Calculator(expression, -1)
             result = calculator.calculate()
-            scientific_notation = "{:e}".format(result)
-            monitorPointer.configure(text=scientific_notation)
+            if result>1000000:
+                scientific_notation = "{:e}".format(result)
+                monitorPointer.configure(text=scientific_notation)
+            else:
+                monitorPointer.configure(text=result)
         except:
             tk.messagebox.showinfo(title="Error", message="Wrong Input")
             monitorPointer.configure(text='')
