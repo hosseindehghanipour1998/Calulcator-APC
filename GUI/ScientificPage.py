@@ -7,16 +7,14 @@ from Button import myButton
 from Utility import *
 
 
+
 class MyScientificPage:
-    
     
     def generatePage(self, root):
         
         # Monitor
         monitor = tk.Label(root, font=("Andale Mono", 15,"italic"), relief=tk.SUNKEN, width=58)
         monitor.grid(rowspan=1, columnspan = 8, column=0, row=0)
-
-        trigonometryOptions = ["sin",   "cos", "tan",  "ctg", "cosh", "sinh", "ceil", "floor", "sqrt", "log", "exp"]
 
         btn_mode = myButton(root, btnRow=1, btnColumn=0, btnText="⌈x⌉", bgColor="#3F4CFF", btnAction=lambda: myUtility.printOnMonitor("Ceil", monitor, isFunction=True))  # ceil
         btn_CE = myButton(root, btnRow=2, btnColumn=0, btnText="⌊x⌋", bgColor="#3F4CFF", btnAction=lambda: myUtility.printOnMonitor("Floor", monitor, isFunction=True))  # floor
@@ -26,7 +24,7 @@ class MyScientificPage:
 
         btn_mode    = myButton(root, btnRow = 1, btnColumn = 1, btnText = "%", bgColor = "#3F4CFF", btnAction = lambda:myUtility.printOnMonitor("%", monitor, space=True) ) # %
         btn_CE      = myButton(root, btnRow = 1, btnColumn = 2, btnText = "CE", bgColor = "#3F4CFF", btnAction = lambda:myUtility.printOnMonitor("", monitor, clear=True) ) # CE
-        btn_C       = myButton(root, btnRow = 1, btnColumn = 3, btnText = "C", bgColor = "#3F4CFF", btnAction = lambda:myUtility.printOnMonitor("", monitor)) # C
+        btn_C       = myButton(root, btnRow = 1, btnColumn = 3, btnText = "C", bgColor = "#3F4CFF", btnAction = lambda:myUtility.printOnMonitor("", monitor, cIsTrue=True)) # C
         btn_div     = myButton(root, btnRow = 1, btnColumn = 4, btnText = "/", bgColor="#3F4CFF", btnAction=lambda: myUtility.printOnMonitor("/", monitor, space=True))  # /
 
         btn_7       = myButton(root, btnRow = 2, btnColumn = 1, btnText = "7", bgColor = "#6EAFF4", btnAction = lambda:myUtility.printOnMonitor("7", monitor) ) # 7
@@ -50,12 +48,12 @@ class MyScientificPage:
         btn_dot     = myButton(root, btnRow = 5, btnColumn = 4, btnText = "-/+", bgColor = "#3F4CFF", btnAction=None) #nagative
         btn_equ     = myButton(root, btnRow = 5, btnColumn = 6, btnText = "=", bgColor = "#FF6E14", columnspan=3, btnAction = lambda:myUtility.callCalculateFunction(monitor), width=15 ) # =
 
-        btn_sin     = myButton(root, btnRow = 2, btnColumn = 6, btnText = "Sin", bgColor = "#3F4CFF", btnAction = lambda:myUtility.printOnMonitor("Sin", monitor, isFunction=True) ) # sin
-        btn_cos     = myButton(root, btnRow = 3, btnColumn = 6, btnText = "Cos", bgColor = "#3F4CFF", btnAction = lambda:myUtility.printOnMonitor("Cos", monitor, isFunction=True)  )# cos
-        btn_cot     = myButton(root, btnRow = 4, btnColumn = 6, btnText = "Cot", bgColor = "#3F4CFF", btnAction = lambda:myUtility.printOnMonitor("Ctg", monitor, isFunction=True) ) # cot
-        btn_tan     = myButton(root, btnRow = 4, btnColumn = 7, btnText = "Tan", bgColor = "#3F4CFF", btnAction = lambda:myUtility.printOnMonitor("Tan", monitor, isFunction=True) ) # tan
+        btn_sin     = myButton(root, btnRow = 2, btnColumn = 6, btnText = "Sin", bgColor = "#3F4CFF", fgColor = "#cdd1d0", btnAction = lambda:myUtility.printOnMonitor("Sin", monitor, isFunction=True) ) # sin
+        btn_cos     = myButton(root, btnRow = 3, btnColumn = 6, btnText = "Cos", bgColor = "#3F4CFF", fgColor = "#cdd1d0", btnAction = lambda:myUtility.printOnMonitor("Cos", monitor, isFunction=True)  )# cos
+        btn_cot     = myButton(root, btnRow = 4, btnColumn = 6, btnText = "Cot", bgColor = "#3F4CFF", fgColor = "#cdd1d0", btnAction = lambda:myUtility.printOnMonitor("Ctg", monitor, isFunction=True) ) # cot
+        btn_tan     = myButton(root, btnRow = 4, btnColumn = 7, btnText = "Tan", bgColor = "#3F4CFF", fgColor = "#cdd1d0", btnAction = lambda:myUtility.printOnMonitor("Tan", monitor, isFunction=True) ) # tan
 
-        btn_p_open     = myButton(root, btnRow = 1, btnColumn = 6, btnText = "(", bgColor = "#3F4CFF", btnAction = lambda:myUtility.printOnMonitor("(", monitor, space=True) ) # (
-        btn_p_close     = myButton(root, btnRow = 1, btnColumn = 7, btnText = ")", bgColor = "#3F4CFF", btnAction = lambda:myUtility.printOnMonitor(")", monitor, space=True) ) # )
-        btn_p_open = myButton(root, btnRow=2, btnColumn=7, btnText="Sinh", bgColor="#3F4CFF", btnAction=lambda: myUtility.printOnMonitor("Sinh", monitor, isFunction=True))  # sinh
-        btn_p_close = myButton(root, btnRow=3, btnColumn=7, btnText="Cosh", bgColor="#3F4CFF", btnAction=lambda: myUtility.printOnMonitor("Cosh", monitor, isFunction=True))  # cosh
+        btn_p_open     = myButton(root, btnRow = 1, btnColumn = 6, btnText = "(", bgColor = "#3F4CFF", fgColor = "#cdd1d0", btnAction = lambda:myUtility.printOnMonitor("(", monitor, space=True) ) # (
+        btn_p_close     = myButton(root, btnRow = 1, btnColumn = 7, btnText = ")", bgColor = "#3F4CFF", fgColor = "#cdd1d0", btnAction = lambda:myUtility.printOnMonitor(")", monitor, space=True) ) # )
+        btn_p_open = myButton(root, btnRow=2, btnColumn=7, btnText="Sinh", bgColor="#3F4CFF", fgColor = "#cdd1d0", btnAction=lambda: myUtility.printOnMonitor("Sinh", monitor, isFunction=True))  # sinh
+        btn_p_close = myButton(root, btnRow=3, btnColumn=7, btnText="Cosh", bgColor="#3F4CFF", fgColor = "#cdd1d0", btnAction=lambda: myUtility.printOnMonitor("Cosh", monitor, isFunction=True))  # cosh

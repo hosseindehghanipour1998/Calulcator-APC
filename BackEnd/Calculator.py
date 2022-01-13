@@ -6,7 +6,6 @@ class Calculator:
 
     def __init__(self, expression, inputX):
         '''
-
         Parameters
         ----------
         expression : String
@@ -22,12 +21,13 @@ class Calculator:
         self.operatorStack = []
         self.operandStack = []
         self.expr = list((expression).lower().split())
-        self.operatorsList = {'+', '-', '/', '*', '^'}
+        self.operatorsList = {'+', '-', '/', '*', '^', '%'}
         self.operatorPrecedences = {
             "+": 1,
             "-": 1,
             "/": 3,
             "*": 3,
+            "%" : 3,
             "^": 4,
             "sin": 5,
             "cos": 5,
@@ -45,7 +45,7 @@ class Calculator:
         self.x = inputX
 
         ###### Used for debugging (Start)######
-        print(f"Expression : {self.expr} \n Len : {len(self.expr)} \n input : {self.x} \n ")
+        #print(f"Expression : {self.expr} \n Len : {len(self.expr)} \n input : {self.x} \n ")
         ###### Used for debugging (End)######
 
     def operandAction(self, operator, input1, input2):
@@ -73,6 +73,8 @@ class Calculator:
             return (input1 * input2)
         elif (operator == '^'):
             return (input1 ** input2)
+        elif (operator == '%'):
+            return  (input1 % input2)
 
     def is_float(self, string):
         '''
@@ -84,11 +86,8 @@ class Calculator:
         -------
         TYPE: Boolean
             Checks if the passed number in String format is a float number or not.
-
-
         Reference of This Code:
         https://stackoverflow.com/questions/736043/checking-if-a-string-can-be-converted-to-float-in-python#comment101879949_38329481
-
         '''
 
         _float_regexp = re.compile(r"^[-+]?(?:\b[0-9]+(?:\.[0-9]*)?|\.[0-9]+\b)(?:[eE][-+]?[0-9]+\b)?$").match
@@ -110,7 +109,6 @@ class Calculator:
             Otherwise, if the name of the function is not in our function list or entered incorrecly, it returns a "Function Not Found" String as output.
         '''
         operandInRadian = math.radians(operand)
-
         switchCase = {
             "tan": "math.tan(operandInRadian)",
             "ctg": "1/math.tan(operandInRadian)",
@@ -123,15 +121,9 @@ class Calculator:
             "exp": "math.exp(operand)",
             "cosh": "math.cosh(operandInRadian)",
             "sinh": "math.sinh(operandInRadian)"}
-
         result = eval(switchCase.get(functionName, "Function Not Found"))
-
-
-        
-        result =  eval(switchCase.get(functionName, "Function Not Found"))
-
-        print(f"{functionName}({operandInRadian} R) = {result}")
-        print(f"{functionName}({operand}) = {result}")
+        #print(f"{functionName}({operandInRadian} R) = {result}")
+        #print(f"{functionName}({operand}) = {result}")
         return result
 
     def calculateOperator(self):
@@ -142,11 +134,12 @@ class Calculator:
         TYPE: Integer
             returns the value of the calculated expression. The expression may include sophisticated precedences and this function overcomes the problem.
         '''
+
         for character in self.expr:
             ###### Used for debugging (Start)######
-            print(f"Read Character: {character}")
-            # print(f"operator Stack: {self.operatorStack}")
-            # print(f"Operand Stack: {self.operandStack}")
+            #print(f"Read Character: {character}")
+            #print(f"operator Stack: {self.operatorStack}")
+            #print(f"Operand Stack: {self.operandStack}")
             ###### Used for debugging (End) ######
 
             # If character == Operator
@@ -196,9 +189,9 @@ class Calculator:
                         self.handleOperatorCharacter(stackTop)
                         stackTop = self.operatorStack.pop()
 
-                print(self.operatorStack)
 
-                stackTop = self.operatorStack[-1]
+                if(len(self.operatorStack) > 0):
+                    stackTop = self.operatorStack[-1]
                 if (stackTop in self.functionsList):
                     stackTop = self.operatorStack.pop()
                     self.handleFunctionCharacter(stackTop)
@@ -258,6 +251,5 @@ class Calculator:
             result = self.calculateOperator()
         except:
             raise Exception("Backend Cannot Support the Entered Exporession. Fix it :D (2)")
-            # return None
 
         return result
