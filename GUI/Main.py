@@ -1,8 +1,5 @@
 import tkinter as tk
-
-
 from Calculator import Calculator
-
 from Button import myButton
 from ScientificPage import MyScientificPage
 

@@ -1,5 +1,5 @@
 import tkinter as tk
-from PIL import Image, ImageTk
+
 
 
 DEFAULT_FONT_NAME = "َAndale Mono"
