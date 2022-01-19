@@ -1,9 +1,8 @@
 import tkinter as tk
-from PIL import Image, ImageTk
-from Button import *
-from BackEnd\
-    .Calculator import Calculator
-from msvcrt import kbhit
+
+
+from Calculator import Calculator
+
 from Button import myButton
 from ScientificPage import MyScientificPage
 
@@ -21,3 +20,4 @@ scientificPage = MyScientificPage()
 scientificPage.generatePage(root)
 
 root.mainloop()
+
