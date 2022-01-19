@@ -44,7 +44,7 @@ class MyScientificPage:
         btn_pow     = myButton(root, btnRow = 5, btnColumn = 1, btnText = "^", bgColor = "#3F4CFF", btnAction = lambda:myUtility.printOnMonitor("^", monitor, space=True) ) # ^
         btn_0       = myButton(root, btnRow = 5, btnColumn = 2, btnText = "0", bgColor = "#6EAFF4", btnAction = lambda:myUtility.printOnMonitor("0", monitor) ) # 0
         btn_dot     = myButton(root, btnRow = 5, btnColumn = 3, btnText = ".", bgColor = "#3F4CFF", btnAction = lambda:myUtility.printOnMonitor(".", monitor) ) # .
-        btn_dot     = myButton(root, btnRow = 5, btnColumn = 4, btnText = "☼", bgColor = "#3F4CFF", btnAction=lambda:myUtility.toggleDarkMode(root=root, canvas=canvas,inputLabel=monitor)) #nagative
+        btn_dot     = myButton(root, btnRow = 5, btnColumn = 4, btnText = "☼ |☽",bgColor = "#3F4CFF", btnAction=lambda:myUtility.toggleDarkMode(root=root, canvas=canvas,inputLabel=monitor)) #nagative
         btn_equ     = myButton(root, btnRow = 5, btnColumn = 6, btnText = "=", bgColor = "#FF6E14", columnspan=3, btnAction = lambda:myUtility.callCalculateFunction(monitor), width=16 ) # =
 
         btn_sin     = myButton(root, btnRow = 2, btnColumn = 6, btnText = "Sin", bgColor = "#3F4CFF", fgColor = "#cdd1d0", btnAction = lambda:myUtility.printOnMonitor("Sin", monitor, isFunction=True) ) # sin
