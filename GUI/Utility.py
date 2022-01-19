@@ -9,6 +9,7 @@ import tkinter.messagebox
 class myUtility:
 
     isEqualPushed = False
+    isDarkOn = False
 
     @staticmethod
     def printOnMonitor(monitorText, monitorPointer, space=False, clear = False, isFunction = False, cIsTrue = False):
@@ -52,7 +53,20 @@ class myUtility:
         '''except:
             tk.messagebox.showinfo(title="Error", message="Oops... We ran into an error, Try again!")
             monitorPointer.configure(text='')'''
-
+        
+    @staticmethod
+    def toggleDarkMode(root, canvas, inputLabel):
+            #print(myUtility.isDarkOn)
+            myUtility.isDarkOn = not myUtility.isDarkOn
+            if(myUtility.isDarkOn):
+                root.configure(bg='#000000')
+                canvas.configure(bg='#000000')
+                inputLabel.configure(foreground='#c2d1cf', background='#2e2d2d')
+    
+            else:
+                root.configure(bg='#FFFFFF')
+                canvas.configure(bg='#FFFFFF')
+                inputLabel.configure(foreground='#000000', background='#FFFFFF')
 
     @staticmethod
     def callCalculateFunction(monitorPointer):

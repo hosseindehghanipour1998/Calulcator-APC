@@ -14,7 +14,7 @@ canvas = tk.Canvas(root, width=645, height=245, bg='#c2d1cf')
 canvas.grid(columnspan = 8, rowspan=6)
 
 scientificPage = MyScientificPage()
-scientificPage.generatePage(root)
+scientificPage.generatePage(root, canvas)
 
 root.mainloop()
 

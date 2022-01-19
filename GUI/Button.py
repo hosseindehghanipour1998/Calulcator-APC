@@ -17,7 +17,7 @@ class myButton:
         myButton.grid(row = btnRow, column=btnColumn, columnspan = columnspan, padx= 0, pady= 0)
         myButton.bind("<Enter>", lambda x: myButton.config(bg="#FF6E14"))
         myButton.bind("<Leave>", lambda x: myButton.config(bg=bgColor))
-
+        
 
 
 

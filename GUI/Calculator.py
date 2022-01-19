@@ -122,8 +122,8 @@ class Calculator:
             "cosh": "math.cosh(operandInRadian)",
             "sinh": "math.sinh(operandInRadian)"}
         result = eval(switchCase.get(functionName, "Function Not Found"))
-        print(f"{functionName}({operandInRadian} R) = {result}")
-        print(f"{functionName}({operand}) = {result}")
+        #print(f"{functionName}({operandInRadian} R) = {result}")
+        #print(f"{functionName}({operand}) = {result}")
         return result
 
     def calculateOperator(self):
